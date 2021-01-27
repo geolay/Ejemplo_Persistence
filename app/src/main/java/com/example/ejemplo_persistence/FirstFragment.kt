@@ -31,11 +31,29 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mbinding.botonGuardar.setOnClickListener {
-            var capturaeditt=mbinding.ingresaEntero.text.toString().toInt()
-            spreference.edit().putInt("claveint",capturaeditt).apply()
+            var capturaedit1=mbinding.ingresaEntero.text.toString().toInt()
+            spreference.edit().putInt("claveint",capturaedit1).apply()
+
+            var capturaedit2=mbinding.ingesaTexto.text.toString()
+            spreference.edit().putString("clavetexto",capturaedit2).apply()
+
+            var capturaedit3=mbinding.ingresaDecimal.text.toString().toFloat()
+            spreference.edit().putFloat("clavedecimal",capturaedit3).apply()
         }
-
         mbinding.textView.text=spreference.getInt("claveint",0).toString()
+        mbinding.textView2.text=spreference.getString("clavetexto","x").toString()
+        mbinding.textView3.text=spreference.getFloat("clavedecimal",0f).toString()
 
+        mbinding.botonBorrar.setOnClickListener {
+            spreference.edit().remove("claveint").apply()
+            spreference.edit().remove("clavetexto").apply()
+            spreference.edit().remove("clavedecimal").apply()
+            mbinding.ingresaEntero.setText("")
+            mbinding.ingesaTexto.setText("")
+            mbinding.ingresaDecimal.setText("")
+            mbinding.textView.setText("")
+            mbinding.textView2.setText("")
+            mbinding.textView3.setText("")
+        }
     }
 }
